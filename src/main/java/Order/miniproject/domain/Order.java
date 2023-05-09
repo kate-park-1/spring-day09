@@ -37,4 +37,23 @@ public class Order {
     orderItems.add(orderItem);
     orderItem.setOrder(this);
   }
+
+  public static Order createOrder(Member member, OrderItem... orderItems){
+    Order order = new Order();
+    order.setMember(member);
+    for(OrderItem orderItem : orderItems){
+      order.addOrderItem(orderItem);
+    }
+    order.setOrderDate(LocalDateTime.now());
+    order.setOrderStatus(OrderStatus.ORDER);
+    return order;
+  }
+
+  public void cancelOrder(){ // 전체 주문 취소
+    this.setOrderStatus(OrderStatus.CANCEL);
+    for(OrderItem orderItem : orderItems){
+      orderItem.cancel();
+    }
+  }
+
 }

@@ -19,6 +19,7 @@ class ItemServiceTest {
   @Autowired private ItemRepository itemRepository;
 
   @Test
+  //@Transactional
   void saveItem() {
     //given
 //   Book book = new Book();

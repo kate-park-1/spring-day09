@@ -28,4 +28,19 @@ public class OrderItem {
 
   @Column(name = "order_quantity")
   private int orderQuantity; // 주문수량
+
+  public void cancel(){
+    //주문수량 => 재고(+)반영
+    item.addStock(this.orderQuantity);
+  }
+
+  public static OrderItem createOrderItem(Item item, int orderPrice, int orderQuantity){
+    OrderItem orderItem = new OrderItem();
+    orderItem.item = item;
+    orderItem.orderPrice = orderPrice;
+    orderItem.orderQuantity = orderQuantity;
+    item.decreaseStock(orderQuantity);
+    return orderItem;
+  }
+
 }

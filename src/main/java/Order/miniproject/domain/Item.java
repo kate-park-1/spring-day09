@@ -19,4 +19,17 @@ public abstract class Item {
   private int price;
   @Column(name="stock_quantity")
   private int stockQuantity;
+
+  public void addStock(int quantity){
+    this.stockQuantity += quantity; // 재고증가 => 주문 취소시 취소 수량만큼 증가
+  }
+
+  public void decreaseStock(int quantity){
+    int remainderStock = this.stockQuantity - quantity;
+    if(remainderStock >= 0){
+      this.stockQuantity = remainderStock ; // 재고감소 => 주문시 감소, 재고수량보다 작거나 같은 경우에만 감소
+    } else {
+      //throw new NotEnoughStockQuantityException("not enough stock to decrease");
+    }
+  }
 }
