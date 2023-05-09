@@ -47,7 +47,7 @@ class MemberServiceTest {
     MemberDto m2 = new MemberDto();
     m2.setName("test");
     Address address1 = new Address("seoul", "kasan", "11112");
-    m2.setAddress(address);
+    m2.setAddress(address1);
     // when
     Long joinId1 = memberService.join(m1);
     Long joinId2 = memberService.join(m2);
